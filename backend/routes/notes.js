@@ -38,4 +38,23 @@ router.post('/addnote', fetchuser, [
     }
 })
 
+//Route 3: Update a note using POST '/updatenote'. Login required
+router.put('/updatenote/:id', fetchuser, async (req, res) => {
+    const { title, description } = req.body;
+    //Create a newNote object
+    const newNote = {}
+    if(title) {newNote.title = title}
+    if(description) {newNote.description = description}
+    //Find the note to be updated and update it
+    let note = await Notes.findById(req.params.id)
+    //1. To check whether the note exists or not
+    if(!note) {return res.status(404).send("Not Found")}
+    //2. To check whether the user logged in is same as the one who created the note
+    if(note.user.toString() !== req.user.id)
+    {
+        return res.status(401).send("Not Allowed")
+    }
+    note = await Notes.findByIdAndUpdate(req.params.id,{$set: newNote},{new: true})
+    res.json({note})
+})
 module.exports = router;
