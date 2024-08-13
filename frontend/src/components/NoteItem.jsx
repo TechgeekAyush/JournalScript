@@ -1,4 +1,6 @@
 import React from 'react'
+import { MdOutlineDelete } from "react-icons/md";
+import { VscEdit } from "react-icons/vsc";
 
 const NoteItem = (props) => {
     const { note } = props
@@ -8,6 +10,8 @@ const NoteItem = (props) => {
                 <div className="card-body">
                     <h5 className="card-title">{note.title}</h5>
                     <p className="card-text">{note.description}</p>
+                    <button type="button" class="btn btn-outline-secondary"><MdOutlineDelete /></button>
+                    <button type="button" class="btn btn-outline-secondary"><VscEdit /></button>
                 </div>
             </div>
         </div>
