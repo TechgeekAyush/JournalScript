@@ -7,7 +7,7 @@ const Notes = () => {
     const { notes,getNotes } = useContext(NoteContext)
     useEffect(() => {
       getNotes()
-    }, [])
+    }, []) // to fetch notes only once when component is mounted
     
     return (
         <>
