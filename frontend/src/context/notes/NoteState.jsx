@@ -30,16 +30,8 @@ const NoteState = (props) => {
             },
             body: JSON.stringify({title, description})
         });
-        const json = await response.json();
+        const note = await response.json();
         //Logic to add on client side
-        const note = {
-            "_id": "66ba16aa64c3d57163b292525",
-            "user": "66b453492ddf003ecc92726d",
-            "title": title,
-            "description": description,
-            "date": "2024-08-12T14:05:30.617Z",
-            "__v": 0
-        }
         setNotes(notes.concat(note)) // not using push as it does not return a new array, whereas concat function does which can be used to set the notes.
     }
 
