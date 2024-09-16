@@ -30,7 +30,7 @@ const NoteState = (props) => {
             },
             body: JSON.stringify({title, description})
         });
-        const json = response.json();
+        const json = await response.json();
         //Logic to add on client side
         const note = {
             "_id": "66ba16aa64c3d57163b292525",
@@ -53,7 +53,7 @@ const NoteState = (props) => {
                 "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjZiNDUzNDkyZGRmMDAzZWNjOTI3MjZkIn0sImlhdCI6MTcyMzA5Mzg4OX0.UB-T_Fawt7D1NErnVXS8f-QhAU7dyk9BzJifX0ha7xs"
             }
         });
-        const json = response.json();
+        const json = await response.json();
         const newNotes = notes.filter((note) => { return note._id !== id })
         setNotes(newNotes)
     }
@@ -69,16 +69,19 @@ const NoteState = (props) => {
             },
             body: JSON.stringify({title, description})
         });
-        const json = response.json();
+        const json = await response.json();
 
         // Logic to edit in client side
-        for (let index = 0; index < notes.length; index++) {
-            const element = array[index];
+        let newNotes = JSON.parse(JSON.stringify(notes)) // creating a copy of the notes
+        for (let index = 0; index < newNotes.length; index++) {
+            const element = newNotes[index];
             if (element._id === id) {
-                element.title = title
-                element.description = description
+                newNotes[index].title = title
+                newNotes[index].description = description
+                break;
             }
         }
+        setNotes(newNotes); // resetting the notes array by making the edit changes to the corresponding note
     }
 
     return (
