@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link,useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 const Navbar = () => {
 
     const [theme, setTheme] = useState('light');
@@ -32,10 +32,8 @@ const Navbar = () => {
                             <Link className={`nav-link ${location.pathname === '/about' ? "active" : ""}`} to="/about">About</Link>
                         </li>
                     </ul>
-                    <form className="d-flex" role="search">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                            <button className="btn btn-outline-success" type="submit">Search</button>
-                    </form>
+                    <Link className="btn btn-success m-1" to="/login" role="button">Login</Link>
+                    <Link className="btn btn-success m-1" to="/signup" role="button">Sign Up</Link>
                     <button className="btn btn-outline-success m-1" onClick={handleTheme}>Light/Dark</button>
                 </div>
             </div>
