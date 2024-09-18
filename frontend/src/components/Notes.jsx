@@ -2,13 +2,22 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import NoteContext from '../context/notes/NoteContext'
 import NoteItem from './NoteItem'
 import AddNote from './AddNote'
+import { useNavigate } from "react-router-dom";
 
 const Notes = (props) => {
+    let navigate = useNavigate();
     const { notes, getNotes, editNote } = useContext(NoteContext)
     const [note, setNote] = useState({ id: "", title: "", description: "" })
     useEffect(() => {
-        getNotes()
-    }, []) // to fetch notes only once when component is mounted
+        if(localStorage.getItem("token"))
+        {
+            getNotes()
+        }
+        else
+        {
+            navigate("/login")
+        }
+    }, []) // to fetch notes only once when component is mounted and user is logged in
 
     const ref = useRef(null)
     const refClose = useRef(null);

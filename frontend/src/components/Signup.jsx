@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom";
 
-const Signup = () => {
+const Signup = (props) => {
   let navigate = useNavigate(); // used to navigate to the homepage after signup
   const [credentials, setCredentials] = useState({ name: "", email: "", password: "", cpassword: "" })
   const onChange = (e) => {
@@ -19,8 +19,16 @@ const Signup = () => {
     });
     const json = await response.json();
     console.log(json)
-    localStorage.setItem('token', json.authtoken);
-    navigate("/");
+    if(json.success)
+    {
+      localStorage.setItem('token', json.authtoken);
+      navigate("/");
+    }
+    else if(json.error == 'User already exists')
+    {
+      props.showAlert("User already exists", "danger")
+      navigate("/");
+    }
   }
   return (
     <>

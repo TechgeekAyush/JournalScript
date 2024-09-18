@@ -1,6 +1,12 @@
 import React, { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 const Navbar = () => {
+
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        localStorage.removeItem('token')
+        navigate('/login')
+    }
 
     const [theme, setTheme] = useState('light');
 
@@ -32,8 +38,8 @@ const Navbar = () => {
                             <Link className={`nav-link ${location.pathname === '/about' ? "active" : ""}`} to="/about">About</Link>
                         </li>
                     </ul>
-                    <Link className="btn btn-success m-1" to="/login" role="button">Login</Link>
-                    <Link className="btn btn-success m-1" to="/signup" role="button">Sign Up</Link>
+                    {!localStorage.getItem('token') ? <><Link className="btn btn-success m-1" to="/login" role="button">Login</Link>
+                    <Link className="btn btn-success m-1" to="/signup" role="button">Sign Up</Link></>:<button className='btn btn-success' onClick={handleLogout}>Logout</button>}
                     <button className="btn btn-outline-success m-1" onClick={handleTheme}>Light/Dark</button>
                 </div>
             </div>
