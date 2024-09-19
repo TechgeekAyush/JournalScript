@@ -7,7 +7,7 @@ const Signup = (props) => {
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
   }
-  const host = "https://journalscript.onrender.com"
+  const host = "https://journalscript-backend.onrender.com"
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await fetch(`${host}/api/auth/createuser`, {
