@@ -7,7 +7,7 @@ const Login = (props) => {
     const onChange = (e) => {
         setCredentials({...credentials, [e.target.name] : e.target.value})
     }
-    const host = "https://journalscript-backend.onrender.com"
+    const host = "http://localhost:3000"
     const handleSubmit = async (e) => {
         e.preventDefault();
         const response = await fetch(`${host}/api/auth/login`, {
