@@ -16,16 +16,14 @@ Welcome to JournalScript, a feature-rich note-taking application built using the
 - **Database**: MongoDB for storing notes and user information
 - **Authentication**: JWT (JSON Web Tokens) for secure authentication
 
-## Installation
-
-### Prerequisites
+## Prerequisites
 
 - Node.js
 - Express.js
 - MongoDB
 - Vite
 
-### Setup
+## Setup
 
 1. **Clone the repository:**
 
