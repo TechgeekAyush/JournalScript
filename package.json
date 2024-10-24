@@ -4,11 +4,8 @@
   "description": "MERN stack notes application",
   "main": "index.js",
   "scripts": {
-    "install-server": "cd backend && npm install",
-    "start-server": "cd backend && node index.js",
-    "install-client": "cd frontend && npm install",
-    "build-client": "cd frontend && npm run build",
-    "start-client": "cd frontend && npm run dev"
+    "build": "npm install --prefix backend && npm install --prefix frontend",
+    "start": "npm run dev --prefix frontend & node ./backend/index.js"
   },
   "keywords": [],
   "author": "",

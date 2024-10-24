@@ -23,26 +23,32 @@ router.post('/createuser', [
     try {
         //Check whether user with the email exists already
         let user = await User.findOne({name: req.body.name, email: req.body.email})
-        const passwordCompare = await bcrypt.compare(req.body.password, user.password);
-        if (user && passwordCompare) {
-            return res.status(400).send({success, error: "User already exists" })
-        }
-        //create a new user
-        const salt = await bcrypt.genSalt(10);
-        const secPass = await bcrypt.hash(req.body.password, salt);
-        user = await User.create({
-            name: req.body.name,
-            email: req.body.email,
-            password: secPass
-        })
-        const data = {
-            user: {
-                id: user.id
+        if(user)
+        {
+            const passwordCompare = await bcrypt.compare(req.body.password, user.password);
+            if (user && passwordCompare) {
+                return res.status(400).send({success, error: "User already exists" })
             }
         }
-        const authtoken = jwt.sign(data, JWT_SECRET)
-        success = true
-        res.json({success, authtoken })
+        else
+        {
+            //create a new user
+            const salt = await bcrypt.genSalt(10);
+            const secPass = await bcrypt.hash(req.body.password, salt);
+            user = await User.create({
+                name: req.body.name,
+                email: req.body.email,
+                password: secPass
+            })
+            const data = {
+                user: {
+                    id: user.id
+                }
+            }
+            const authtoken = jwt.sign(data, JWT_SECRET)
+            success = true
+            res.json({success, authtoken })
+        }
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Internal server error")
