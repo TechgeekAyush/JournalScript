@@ -16,42 +16,13 @@ Welcome to JournalScript, a feature-rich note-taking application built using the
 - **Database**: MongoDB for storing notes and user information
 - **Authentication**: JWT (JSON Web Tokens) for secure authentication
 
-## Prerequisites
-
-- Node.js
-- Express.js
-- MongoDB
-- Vite
-
-## Setup
-
-1. **Clone the repository:**
-
-   ```sh
-   git clone https://github.com/TechgeekAyush/JournalScript.git
-   cd JournalScript
-
-2. **Create a .env file in the root directory and add the following:**
-
-   ```sh
-   JWT_SECRET=your_jwt_secret
-   MONGO_URI=your_mongodb_connection_string
-
-4. **Install dependencies and run the application:**
-   ```sh
-   # In the root directory, change the directory to server and run the server
-   cd backend
-   npm install
-   npx nodemon index.js
-
-   # In another terminal, change the directory to client and run the client
-   cd frontend
-   npm install
-   npm run dev
-
 ## Usage
 
 1. **Sign Up** to start using JournalScript.
 2. **Log in** with your credentials.
 3. **Create new notes**
 4. **Update or delete** notes as needed.
+
+## Link to the web app
+
+[JournalScript](https://journalscript.onrender.com)
