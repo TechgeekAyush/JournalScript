@@ -15,13 +15,14 @@ function App() {
   const [alert, setAlert] = useState(null)
   const showAlert = (message, type) => {
     setAlert({
-        msg: message,
-        type: type
+      msg: message,
+      type: type
     })
     setTimeout(() => {
-        setAlert(null)
+      setAlert(null)
     }, 2000)
-}
+  }
+
   return (
     <>
       <NoteState>
