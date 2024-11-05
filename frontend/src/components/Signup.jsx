@@ -8,7 +8,7 @@ const Signup = (props) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
   }
   // const host = "http://localhost:3000"
-  const host = "https://journalscript.onrender.com"
+  const host = "https://journal-script-backend.vercel.app"
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await fetch(`${host}/api/auth/createuser`, {
