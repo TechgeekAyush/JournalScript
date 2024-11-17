@@ -6,6 +6,9 @@ const path = require('path')
 const app = express()
 const port = process.env.PORT || 3000
 app.use(cors())
+app.use(cors({
+  origin: 'https://journalscript.vercel.app'
+}));
 app.use(express.json()) //to use req.body -> this middleware is required
 //Available routes
 app.use('/api/auth', require('./routes/auth'))
